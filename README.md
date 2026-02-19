@@ -1,1 +1,1 @@
-# Laboratorios
+# Laboratórios
