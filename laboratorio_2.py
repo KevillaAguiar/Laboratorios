@@ -106,5 +106,5 @@ for i in range(1, 7):
 
     # Output vira input da próxima camada
     X = X_out
-
+    
 print(X)
