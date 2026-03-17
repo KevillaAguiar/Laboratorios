@@ -75,14 +75,17 @@ def EncoderBlock(x):
     return X
 
 #Tarefa 3
-def DecoderBlocky(y, Z):
+def DecoderBlock(y, Z):
 
     mask = create_causal_mask(y.shape[1])
     Masked_Self_Attention = scaled_dot_product_attention(y, y, y, mask=mask) 
+
     Normalization = LayerNorm(y, Masked_Self_Attention)
     Cross_Attention = scaled_dot_product_attention(Normalization, Z, Z)
-    Normalization_2 = LayerNorm(y, Cross_Attention)
+
+    Normalization_2 = LayerNorm(Normalization, Cross_Attention)
     ffn = FeedForwardNetwork(Normalization_2)
+
     out = LayerNorm(Normalization_2, ffn)
 
     vocab_size = 100
