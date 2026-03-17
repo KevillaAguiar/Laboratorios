@@ -95,3 +95,39 @@ def DecoderBlock(y, Z):
     probs = exp_logits / np.sum(exp_logits, axis=-1, keepdims=True)
 
     return probs
+
+#Tarefa 4
+d_model = 512
+seq_len = 2
+vocab_size = 100
+EOS_INDEX = vocab_size - 1
+
+# "Thinking Machines" — tensor fictício com shape (batch, seq_len, d_model)
+encoder_input = np.random.randn(1, seq_len, d_model)
+
+# Encoder processa a entrada e gera a memória Z
+Z = EncoderBlock(encoder_input)
+
+# Decoder começa com token <START> — representado como vetor aleatório
+START_token = np.random.randn(1, 1, d_model)
+y = START_token
+
+print("Iniciando geração:")
+
+while True:
+    # Decoder prevê probabilidades do próximo token
+    probs = DecoderBlock(y, Z)
+
+    # Pega o token mais provável do último passo da sequência
+    next_token_id = np.argmax(probs[0, -1, :])
+
+    print(f"Token gerado: {next_token_id}")
+
+    # Para se gerou <EOS>
+    if next_token_id == EOS_INDEX:
+        print("Token <EOS> gerado. Fim da sequência.")
+        break
+
+    # Representa o novo token como vetor e concatena à sequência
+    next_token = np.random.randn(1, 1, d_model)
+    y = np.concatenate([y, next_token], axis=1)
