@@ -73,3 +73,22 @@ def EncoderBlock(x):
     X = X_out
 
     return X
+
+#Tarefa 3
+def DecoderBlocky(y, Z):
+
+    mask = create_causal_mask(y.shape[1])
+    Masked_Self_Attention = scaled_dot_product_attention(y, y, y, mask=mask) 
+    Normalization = LayerNorm(y, Masked_Self_Attention)
+    Cross_Attention = scaled_dot_product_attention(Normalization, Z, Z)
+    Normalization_2 = LayerNorm(y, Cross_Attention)
+    ffn = FeedForwardNetwork(Normalization_2)
+    out = LayerNorm(Normalization_2, ffn)
+
+    vocab_size = 100
+    W_out = np.random.rand(out.shape[-1], vocab_size)
+    logits = out @ W_out
+    exp_logits = np.exp(logits - np.max(logits, axis=-1, keepdims=True))
+    probs = exp_logits / np.sum(exp_logits, axis=-1, keepdims=True)
+
+    return probs
