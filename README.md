@@ -10,10 +10,7 @@ Os laboratórios são organizados em pastas separadas, onde cada atividade explo
 ├── Lab2
 ├── Lab3
 ├── Lab4
-<<<<<<< HEAD
 ├── Lab5
-=======
->>>>>>> a2ae69192fe04b7064824051828869a8365b6394
 └── README.md
 ```
 Cada pasta contém o código do laboratório e um README específico com explicações e instruções de execução.
@@ -65,11 +62,7 @@ O processo continua até que o modelo gere o token especial **`<EOS>`**, indican
 ---
 
 ## Lab4 — Transformer Completo (Encoder-Decoder)
-<<<<<<< HEAD
 Neste laboratório todos os componentes anteriores foram integrados em uma **arquitetura Encoder-Decoder completa**, capaz de realizar inferência auto-regressiva fim-a-fim usando apenas NumPy.
-=======
-Neste laboratório todos os componentes anteriores foram integrados em uma **arquitetura Encoder-Decoder completa**, capaz de realizar inferência auto-regressiva fim-a-fim.
->>>>>>> a2ae69192fe04b7064824051828869a8365b6394
 
 Componentes refatorados e integrados:
 * **`scaled_dot_product_attention(Q, K, V, mask=None)`** — função genérica reutilizada para Self-Attention, Masked Self-Attention e Cross-Attention
@@ -85,7 +78,6 @@ O teste de inferência simula a tradução da frase **"Thinking Machines"**, ond
 
 ---
 
-<<<<<<< HEAD
 ## Lab5 — Treinamento Fim-a-Fim do Transformer
 Neste laboratório final da Unidade I, a arquitetura do Lab 4 foi migrada para **PyTorch** e conectada a um dataset real do Hugging Face, implementando o loop completo de treinamento com backpropagation.
 
@@ -104,26 +96,15 @@ Resultados obtidos:
 
 ---
 
-=======
->>>>>>> a2ae69192fe04b7064824051828869a8365b6394
 # Integridade Acadêmica
 O desenvolvimento deste repositório contou com o auxílio da ferramenta de IA generativa **Claude (Anthropic)** nas seguintes frentes:
 
 * Revisão e correção do código escrito pela aluna, com explicações sobre cada ajuste
-<<<<<<< HEAD
 * Esclarecimento de dúvidas conceituais sobre arquitetura Transformer e manipulação de tensores com NumPy e PyTorch
 * Implementação do loop de inferência auto-regressivo (Lab4 — Tarefa 4)
 * Implementação guiada do loop de treinamento e overfitting test (Lab5 — Tarefas 3 e 4)
-=======
-* Esclarecimento de dúvidas conceituais sobre arquitetura Transformer e manipulação de tensores com NumPy
-* Implementação do loop de inferência auto-regressivo (Lab4 — Tarefa 4)
->>>>>>> a2ae69192fe04b7064824051828869a8365b6394
 * Redação dos arquivos README
 
 Todo o restante do código foi desenvolvido manualmente pela aluna com base nos conceitos estudados na disciplina.
 
-<<<<<<< HEAD
 *Partes geradas/complementadas com IA (Claude - Anthropic), revisadas por Kévilla.*
-=======
-*Partes geradas/complementadas com IA (Claude - Anthropic), revisadas por Kévilla.*
->>>>>>> a2ae69192fe04b7064824051828869a8365b6394
