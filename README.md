@@ -11,6 +11,7 @@ Os laboratórios são organizados em pastas separadas, onde cada atividade explo
 ├── Lab3
 ├── Lab4
 ├── Lab5
+├── Lab6
 └── README.md
 ```
 Cada pasta contém o código do laboratório e um README específico com explicações e instruções de execução.
@@ -96,6 +97,19 @@ Resultados obtidos:
 
 ---
 
+## Lab6 — Tokenizador BPE e WordPiece
+Neste laboratório foi implementado o algoritmo **Byte Pair Encoding (BPE)** do zero e explorado o funcionamento do **WordPiece** na prática.
+
+Componentes implementados:
+* **`get_stats(vocab)`** — conta a frequência de pares de símbolos adjacentes no corpus
+* **`merge_vocab(pair, v_in)`** — funde o par mais frequente em todas as palavras do vocabulário
+* **Loop de treinamento BPE** — 5 iterações formando tokens morfológicos como `est</w>`
+* **WordPiece** — tokenização com `bert-base-multilingual-cased` do Hugging Face
+
+O algoritmo BPE descobriu sozinho o sufixo `est</w>` após 3 iterações, sem nenhuma regra linguística explícita. O símbolo `##` no WordPiece indica continuação de token — mecanismo que impede o travamento do modelo diante de palavras desconhecidas.
+
+---
+
 # Integridade Acadêmica
 O desenvolvimento deste repositório contou com o auxílio da ferramenta de IA generativa **Claude (Anthropic)** nas seguintes frentes:
 
@@ -103,6 +117,7 @@ O desenvolvimento deste repositório contou com o auxílio da ferramenta de IA g
 * Esclarecimento de dúvidas conceituais sobre arquitetura Transformer e manipulação de tensores com NumPy e PyTorch
 * Implementação do loop de inferência auto-regressivo (Lab4 — Tarefa 4)
 * Implementação guiada do loop de treinamento e overfitting test (Lab5 — Tarefas 3 e 4)
+* Implementação da função `merge_vocab` com expressões regulares (Lab6 — Tarefa 2)
 * Redação dos arquivos README
 
 Todo o restante do código foi desenvolvido manualmente pela aluna com base nos conceitos estudados na disciplina.
