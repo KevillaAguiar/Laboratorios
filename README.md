@@ -12,6 +12,7 @@ Os laboratórios são organizados em pastas separadas, onde cada atividade explo
 ├── Lab4
 ├── Lab5
 ├── Lab6
+├── Lab7
 └── README.md
 ```
 Cada pasta contém o código do laboratório e um README específico com explicações e instruções de execução.
@@ -80,7 +81,7 @@ O teste de inferência simula a tradução da frase **"Thinking Machines"**, ond
 ---
 
 ## Lab5 — Treinamento Fim-a-Fim do Transformer
-Neste laboratório final da Unidade I, a arquitetura do Lab 4 foi migrada para **PyTorch** e conectada a um dataset real do Hugging Face, implementando o loop completo de treinamento com backpropagation.
+Neste laboratório a arquitetura do Lab 4 foi migrada para **PyTorch** e conectada a um dataset real do Hugging Face, implementando o loop completo de treinamento com backpropagation.
 
 Dataset utilizado: `bentrevett/multi30k` (pares inglês → alemão), subconjunto de 1.000 frases.
 
@@ -110,6 +111,18 @@ O algoritmo BPE descobriu sozinho o sufixo `est</w>` após 3 iterações, sem ne
 
 ---
 
+## Lab7 — Fine-Tuning com LoRA e QLoRA
+Neste laboratório foi construído um pipeline completo de **fine-tuning** de um modelo de linguagem fundacional utilizando técnicas de eficiência de parâmetros (**PEFT/LoRA**) e quantização (**QLoRA**).
+
+Componentes implementados:
+* **Dataset Sintético** — 50 pares instrução-resposta no domínio de culinária gerados via API GPT-3.5-turbo, divididos em 90% treino e 10% teste
+* **Quantização QLoRA** — carregamento em 4-bits com tipo `nf4` e compute dtype `float16`
+* **Adaptador LoRA** — rank=64, alpha=16, dropout=0.1, task_type=CAUSAL_LM
+* **SFTTrainer** — pipeline de treinamento com otimizador `paged_adamw_32bit`, scheduler `cosine` e warmup ratio de 0.03
+* **Inferência** — testes com prompts reais do domínio de culinária
+
+---
+
 # Integridade Acadêmica
 O desenvolvimento deste repositório contou com o auxílio da ferramenta de IA generativa **Claude (Anthropic)** nas seguintes frentes:
 
@@ -118,6 +131,7 @@ O desenvolvimento deste repositório contou com o auxílio da ferramenta de IA g
 * Implementação do loop de inferência auto-regressivo (Lab4 — Tarefa 4)
 * Implementação guiada do loop de treinamento e overfitting test (Lab5 — Tarefas 3 e 4)
 * Implementação da função `merge_vocab` com expressões regulares (Lab6 — Tarefa 2)
+* Geração de templates de código para as configurações de LoRA, BitsAndBytesConfig e SFTTrainer (Lab7)
 * Redação dos arquivos README
 
 Todo o restante do código foi desenvolvido manualmente pela aluna com base nos conceitos estudados na disciplina.
