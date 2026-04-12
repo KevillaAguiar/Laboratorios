@@ -56,7 +56,11 @@ print(f"  - Dropout: {lora_config.lora_dropout}")
 model = get_peft_model(model, lora_config)
 
 print("Carregando dataset...")
-dataset = load_dataset("json", data_files={"train": "train.jsonl", "test": "test.jsonl"})
+base_dir = os.path.dirname(os.path.abspath(__file__))
+dataset = load_dataset("json", data_files={
+    "train": os.path.join(base_dir, "train.jsonl"),
+    "test": os.path.join(base_dir, "test.jsonl")
+})
 
 dataset = dataset.rename_column("response", "completion")
 
@@ -74,7 +78,7 @@ training_config = SFTConfig(
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
     gradient_accumulation_steps=4,
-    optim="paged_adamw_32bit",
+    optim="paged_adamw_32bit" if torch.cuda.is_available() else "adamw_torch",
     learning_rate=2e-4,
     lr_scheduler_type="cosine",
     warmup_ratio=0.03,
